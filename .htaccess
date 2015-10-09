@@ -60,3 +60,15 @@ ExpiresDefault "access plus 2 days"
 </IfModule>
 ## EXPIRES CACHING ##
 
+# ALLOW USER BY IP
+<Limit GET POST>
+ order deny,allow
+ deny from all
+ allow from 79.123.118.62
+</Limit>
+
+# PREVENT VIEWING OF .HTACCESS
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>

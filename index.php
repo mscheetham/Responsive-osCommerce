@@ -110,7 +110,8 @@ if (tep_not_null($category['categories_description'])) {
                          'PRODUCT_LIST_QUANTITY' => PRODUCT_LIST_QUANTITY,
                          'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
                          'PRODUCT_LIST_IMAGE' => PRODUCT_LIST_IMAGE,
-                         'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW);
+                         'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW,
+						 'PRODUCT_LIST_ORDER' => '99');
 
     asort($define_list);
 
@@ -142,6 +143,9 @@ if (tep_not_null($category['categories_description'])) {
         case 'PRODUCT_LIST_WEIGHT':
           $select_column_list .= 'p.products_weight, ';
           break;
+		case 'PRODUCT_LIST_ORDER':
+          $select_column_list .= 'p.products_sort_order, ';
+          break;
       }
     }
 
@@ -167,9 +171,9 @@ if (tep_not_null($category['categories_description'])) {
 
     if ( (!isset($HTTP_GET_VARS['sort'])) || (!preg_match('/^[1-8][ad]$/', $HTTP_GET_VARS['sort'])) || (substr($HTTP_GET_VARS['sort'], 0, 1) > sizeof($column_list)) ) {
       for ($i=0, $n=sizeof($column_list); $i<$n; $i++) {
-        if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
+        if ($column_list[$i] == 'PRODUCT_LIST_ORDER') {
           $HTTP_GET_VARS['sort'] = $i+1 . 'a';
-          $listing_sql .= " order by pd.products_name";
+          $listing_sql .= " order by p.products_sort_order";
           break;
         }
       }
@@ -198,6 +202,9 @@ if (tep_not_null($category['categories_description'])) {
           break;
         case 'PRODUCT_LIST_PRICE':
           $listing_sql .= " order by final_price " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          break;
+		 case 'PRODUCT_LIST_ORDER':
+          $listing_sql .= " order by p.products_sort_order " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
       }
     }
@@ -286,6 +293,7 @@ if (tep_not_null($image['catdesc'])) {
 
 <?php
     }
+	include(DIR_WS_MODULES . FILENAME_DEFAULT_SPECIALS);
 
     include(DIR_WS_MODULES . FILENAME_NEW_PRODUCTS);
     include(DIR_WS_MODULES . FILENAME_UPCOMING_PRODUCTS);

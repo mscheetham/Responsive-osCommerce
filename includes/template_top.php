@@ -23,6 +23,7 @@
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
+<meta name="google-site-verification" content="qcPDpuzrkzUUznpBggWhnrwj0OATETYcqIEv65Huw-s" />
 <meta charset="<?php echo CHARSET; ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -52,6 +52,7 @@
     define('DIR_WS_CATALOG', DIR_WS_HTTP_CATALOG);
   } else {
     define('DIR_WS_CATALOG', DIR_WS_HTTPS_CATALOG);
+
   }
 
 // include the list of project filenames
@@ -62,6 +63,15 @@
 
 // include the database functions
   require(DIR_WS_FUNCTIONS . 'database.php');
+
+// CONTRIB: start indvship
+  function tep_get_configuration_key_value($lookup) {
+	$configuration_query_raw= tep_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key='" . $lookup . "'");
+	$configuration_query= tep_db_fetch_array($configuration_query_raw);
+	$lookup_value= $configuration_query['configuration_value'];
+	return $lookup_value;
+  }
+// CONTRIB: end indvship
 
 // make a connection to the database... now
   tep_db_connect() or die('Unable to connect to database server!');
@@ -140,7 +150,7 @@
 
 // set the session cookie parameters
    if (function_exists('session_set_cookie_params')) {
-    session_set_cookie_params(0, $cookie_path, $cookie_domain);
+    session_set_cookie_params(0, $cookie_path, $cookie_domain,$cookie_secure);
   } elseif (function_exists('ini_set')) {
     ini_set('session.cookie_lifetime', '0');
     ini_set('session.cookie_path', $cookie_path);

@@ -43,6 +43,9 @@
   define('TABLE_PRODUCTS_DESCRIPTION', 'products_description');
   define('TABLE_PRODUCTS_IMAGES', 'products_images');
   define('TABLE_PRODUCTS_NOTIFICATIONS', 'products_notifications');
+  // start indvship
+  define('TABLE_PRODUCTS_SHIPPING', 'products_shipping');
+  // end indvship
   define('TABLE_PRODUCTS_OPTIONS', 'products_options');
   define('TABLE_PRODUCTS_OPTIONS_VALUES', 'products_options_values');
   define('TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS', 'products_options_values_to_products_options');
@@ -57,4 +60,32 @@
   define('TABLE_ZONES_TO_GEO_ZONES', 'zones_to_geo_zones');
   define('TABLE_WHOS_ONLINE', 'whos_online');
   define('TABLE_ZONES', 'zones');
+  /* MAZ BEGIN latest news
+     - added 'define' statement below */
+  define('TABLE_LATEST_NEWS', 'latest_news');
+  /* MAZ //END latest news */
+    //MAZ BOF FAMILIES
+  define('TABLE_FAMILIES', 'families');
+  define('TABLE_PRODUCTS_FAMILIES', 'products_families');
+  //MAZ EOF FAMILIES
+  // Linuxuk HTTP Error
+  //define('TABLE_LINUXUK_HTTP_ERROR', 'linuxuk_error_log');
+  //define('TABLE_IPTRAP', 'linuxuk_iptrap');
+  //define('TABLE_LINUXUK_BAN_BOTS', 'linuxuk_ban_bots');
+  // Linuxuk HTTP Error
+  //define('TABLE_BLACKLIST', 'card_blacklist');
+// BMC CC Mod End
+//MAZ EOF SWITCH DEBIT CARDS
+/*** Begin Header Tags SEO ***/
+//  define('TABLE_HEADERTAGS', 'headertags');
+//  define('TABLE_HEADERTAGS_CACHE', 'headertags_cache');
+//  define('TABLE_HEADERTAGS_DEFAULT', 'headertags_default');
+//  define('TABLE_HEADERTAGS_KEYWORDS', 'headertags_keywords');  
+//  define('TABLE_HEADERTAGS_SEARCH', 'headertags_search');
+//  define('TABLE_HEADERTAGS_SILO', 'headertags_silo');
+//  define('TABLE_HEADERTAGS_SOCIAL', 'headertags_social');  
+  /*** End Header Tags SEO ***/
+  //Define Content
+  define('TABLE_DEFINE_CONTENT', 'define_content');
+  
 ?>

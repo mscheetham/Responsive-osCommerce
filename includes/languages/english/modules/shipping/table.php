@@ -12,7 +12,7 @@
 
 define('MODULE_SHIPPING_TABLE_TEXT_TITLE', 'Table Rate');
 define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION', 'Table Rate');
-define('MODULE_SHIPPING_TABLE_TEXT_WAY', '');
+define('MODULE_SHIPPING_TABLE_TEXT_WAY', 'Delivery Charge (normally next working day)');
 define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT', 'Weight');
 define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT', 'Amount');
 ?>

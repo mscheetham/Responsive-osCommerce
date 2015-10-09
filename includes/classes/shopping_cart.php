@@ -12,6 +12,10 @@
 
   class shoppingCart {
     var $contents, $total, $weight, $cartID, $content_type;
+	// start indvship
+    var $shiptotal;
+    // end indvship
+
 
     function shoppingCart() {
       $this->reset();
@@ -67,6 +71,10 @@
       $this->contents = array();
       $this->total = 0;
       $this->weight = 0;
+	  // start indvship
+	  $this->shiptotal = '';
+	  // end indvship
+
       $this->content_type = false;
 
       if (tep_session_is_registered('customer_id') && ($reset_database == true)) {
@@ -341,6 +349,11 @@
             $products_price = $specials['specials_new_products_price'];
           }
 
+		  // start indvship
+		  $products_shipping_query = tep_db_query("select products_ship_price, products_ship_price_two, products_ship_zip, products_ship_methods_id, products_ship_exempt_free from " . TABLE_PRODUCTS_SHIPPING . " where products_id = '" . $products['products_id'] . "'");
+		  $products_shipping = tep_db_fetch_array($products_shipping_query);
+		  // end indvship
+
           $products_array[] = array('id' => $products_id,
                                     'name' => $products['products_name'],
                                     'model' => $products['products_model'],
@@ -350,6 +363,14 @@
                                     'weight' => $products['products_weight'],
                                     'final_price' => ($products_price + $this->attributes_price($products_id)),
                                     'tax_class_id' => $products['products_tax_class_id'],
+
+									// start indvship
+									'products_ship_price' => $products_shipping['products_ship_price'],
+									'products_ship_price_two' => $products_shipping['products_ship_price_two'],
+									'products_ship_zip' => $products_shipping['products_ship_zip'],
+									'products_ship_exempt_free' => $products_shipping['products_ship_exempt_free'],
+									// end  indvship
+
                                     'attributes' => (isset($this->contents[$products_id]['attributes']) ? $this->contents[$products_id]['attributes'] : ''));
         }
       }
@@ -374,6 +395,9 @@
     }
 
     function get_content_type() {
+	  // start indvship
+	  global $shipping_modules; 
+	  // end indvship
       $this->content_type = false;
 
       if ( (DOWNLOAD_ENABLED == 'true') && ($this->count_contents() > 0) ) {

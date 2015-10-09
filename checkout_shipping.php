@@ -127,7 +127,12 @@
             if ( (isset($quote[0]['methods'][0]['title'])) && (isset($quote[0]['methods'][0]['cost'])) ) {
               $shipping = array('id' => $shipping,
                                 'title' => (($free_shipping == true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . ' (' . $quote[0]['methods'][0]['title'] . ')'),
-                                'cost' => $quote[0]['methods'][0]['cost']);
+								
+								// start indvship
+                                //'cost' => $quote[0]['methods'][0]['cost']);
+                                'cost' => $quote[0]['methods'][0]['cost'],
+                                'invcost' => $shipping_modules->get_shiptotal());
+                                // end indvship
 
               tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
             }
@@ -263,8 +268,7 @@
       <tr class="table-selection">
         <td>
           <strong><?php echo $quotes[$i]['module']; ?></strong>
-          <?php
-          if (isset($quotes[$i]['icon']) && tep_not_null($quotes[$i]['icon'])) echo '&nbsp;' . $quotes[$i]['icon'];
+          <?php if (isset($quotes[$i]['icon']) && tep_not_null($quotes[$i]['icon'])) echo '&nbsp;' . $quotes[$i]['icon'];
           ?>
 
           <?php

@@ -31,8 +31,14 @@
       global $languages_id;
 
       $order_id = tep_db_prepare_input($order_id);
+//MAZ SWITCH ADDED cc_cvv, cc_start, cc_issue,  to next line
+//	$order_query = tep_db_query("select customers_id, customers_name, customers_company, customers_street_address, customers_street_address2, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_street_address2, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_street_address2, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, cc_type, cc_owner, cc_number, cc_expires, currency, currency_value, date_purchased, orders_status, last_modified from " . TABLE_ORDERS . " where orders_id = '" . (int)$order_id . "'");
+//	$order = tep_db_fetch_array($order_query);
+// Jabz
+//      $order_query = tep_db_query("select customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, cc_type, cc_owner, cc_number, cc_expires, cc_cvv, cc_start, cc_issue, currency, currency_value, date_purchased, orders_status, last_modified from " . TABLE_ORDERS . " where orders_id = '" . (int)$order_id . "'");
+//      $order = tep_db_fetch_array($order_query);
 
-      $order_query = tep_db_query("select customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, cc_type, cc_owner, cc_number, cc_expires, currency, currency_value, date_purchased, orders_status, last_modified from " . TABLE_ORDERS . " where orders_id = '" . (int)$order_id . "'");
+		$order_query = tep_db_query("select customers_id, customers_name, customers_company, customers_street_address, customers_street_address2, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_street_address2, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_street_address2, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, cc_type, cc_owner, cc_number, cc_expires, currency, currency_value, date_purchased, orders_status, last_modified from " . TABLE_ORDERS . " where orders_id = '" . (int)$order_id . "'");
       $order = tep_db_fetch_array($order_query);
 
       $totals_query = tep_db_query("select title, text from " . TABLE_ORDERS_TOTAL . " where orders_id = '" . (int)$order_id . "' order by sort_order");
@@ -57,6 +63,21 @@
                           'cc_owner' => $order['cc_owner'],
                           'cc_number' => $order['cc_number'],
                           'cc_expires' => $order['cc_expires'],
+						  //MAZ BOF SWITCH
+						  // BMC CC Mod Start
+	'cc_start' => $order['cc_start'],
+        'cc_issue' => $order['cc_issue'],
+        'cc_cvv' => $order['cc_cvv'],
+// BMC CC Mod End
+//MAZ EOF SWITCH DEBIT CARDS
+// MAZ purchaseorder start
+                          'account_name' => $order['account_name'],
+                          'account_number' => $order['account_number'],
+                          'po_number' => $order['po_number'],
+// MAZ purchaseorder end
+	'cc_po_no' => $order['cc_po_no'],
+	'cc_po_contact_name' => $order['cc_po_contact_name'],
+	'cc_po_department' => $order['cc_po_department'],
                           'date_purchased' => $order['date_purchased'],
                           'orders_status' => $order_status['orders_status_name'],
                           'last_modified' => $order['last_modified'],
@@ -67,6 +88,7 @@
                               'name' => $order['customers_name'],
                               'company' => $order['customers_company'],
                               'street_address' => $order['customers_street_address'],
+					'street_address2' => $order['customers_street_address2'],
                               'suburb' => $order['customers_suburb'],
                               'city' => $order['customers_city'],
                               'postcode' => $order['customers_postcode'],
@@ -79,6 +101,7 @@
       $this->delivery = array('name' => trim($order['delivery_name']),
                               'company' => $order['delivery_company'],
                               'street_address' => $order['delivery_street_address'],
+					'street_address2' => $order['delivery_street_address2'],
                               'suburb' => $order['delivery_suburb'],
                               'city' => $order['delivery_city'],
                               'postcode' => $order['delivery_postcode'],
@@ -93,6 +116,7 @@
       $this->billing = array('name' => $order['billing_name'],
                              'company' => $order['billing_company'],
                              'street_address' => $order['billing_street_address'],
+				     'street_address2' => $order['billing_street_address2'],
                              'suburb' => $order['billing_suburb'],
                              'city' => $order['billing_city'],
                              'postcode' => $order['billing_postcode'],
@@ -131,7 +155,11 @@
     }
 
     function cart() {
-      global $HTTP_POST_VARS, $customer_id, $sendto, $billto, $cart, $languages_id, $currency, $currencies, $shipping, $payment, $comments, $customer_default_address_id;
+	 // global $HTTP_POST_VARS, $customer_id, $sendto, $billto, $cart, $languages_id, $currency, $currencies, $shipping, $payment, $comments, $customer_default_address_id;
+ // start indvship
+      //global $customer_id, $sendto, $billto, $cart, $languages_id, $currency, $currencies, $shipping, $payment;
+	  global $HTTP_POST_VARS, $customer_id, $sendto, $billto, $cart, $languages_id, $currency, $currencies, $shipping, $payment, $comments, $customer_default_address_id, $shipping_modules;
+      // end indvship
 
       $this->content_type = $cart->get_content_type();
 
@@ -147,6 +175,7 @@
                                   'entry_lastname' => $sendto['lastname'],
                                   'entry_company' => $sendto['company'],
                                   'entry_street_address' => $sendto['street_address'],
+								  'entry_street_address2' => $sendto['street_address2'],
                                   'entry_suburb' => $sendto['suburb'],
                                   'entry_postcode' => $sendto['postcode'],
                                   'entry_city' => $sendto['city'],
@@ -167,6 +196,7 @@
                                   'entry_lastname' => null,
                                   'entry_company' => null,
                                   'entry_street_address' => null,
+								  'entry_street_address2' => null,
                                   'entry_suburb' => null,
                                   'entry_postcode' => null,
                                   'entry_city' => null,
@@ -186,6 +216,7 @@
                                  'entry_lastname' => $billto['lastname'],
                                  'entry_company' => $billto['company'],
                                  'entry_street_address' => $billto['street_address'],
+							     'entry_street_address2' => $billto['street_address2'],
                                  'entry_suburb' => $billto['suburb'],
                                  'entry_postcode' => $billto['postcode'],
                                  'entry_city' => $billto['city'],
@@ -210,17 +241,51 @@
         $tax_address = array('entry_country_id' => $shipping_address['entry_country_id'],
                              'entry_zone_id' => $shipping_address['entry_zone_id']);
       }
+	  //start indvship
+      if($shipping['id']==indvship_indvship){
+        $shipping_cost = $shipping['cost'];
+        $shipping_title = $shipping['title'];
+      } else {
+      /*  $shipping_cost = $shipping['cost'] + $shipping['invcost'];
+        if ($shipping['invcost'] > 0) {
+          $shipping_title = $shipping['title']. ' Plus Flat Rate Shipping'
+        } else {*/         
+		 $shipping_title = $shipping['title'];
+		 $shipping_cost = $shipping['cost'];
+       /* }*/
+      }
+      // end indvship 
 
       $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
                           'currency' => $currency,
                           'currency_value' => $currencies->currencies[$currency]['value'],
                           'payment_method' => $payment,
-                          'cc_type' => '',
-                          'cc_owner' => '',
-                          'cc_number' => '',
-                          'cc_expires' => '',
-                          'shipping_method' => $shipping['title'],
-                          'shipping_cost' => $shipping['cost'],
+                          'cc_type' => (isset($GLOBALS['cc_type']) ? $GLOBALS['cc_type'] : ''),
+                          'cc_owner' => (isset($GLOBALS['cc_owner']) ? $GLOBALS['cc_owner'] : ''),
+                          'cc_number' => (isset($GLOBALS['cc_number']) ? $GLOBALS['cc_number'] : ''),
+                          'cc_expires' => (isset($GLOBALS['cc_expires']) ? $GLOBALS['cc_expires'] : ''),
+//MAZ BOF SWITCH DEBIT CARDS
+						  // BMC CC Mod Start
+        'cc_start' => $GLOBALS['cc_start'],
+        'cc_issue' => $GLOBALS['cc_issue'],
+        'cc_cvv' => $GLOBALS['cc_cvv'],
+		'cc_po_no' => $GLOBALS['cc_po_no'],
+        'cc_po_contact_name' => $GLOBALS['cc_po_contact_name'],
+        'cc_po_department' => $GLOBALS['cc_po_department'],
+// BMC CC Mod End
+//MAZ EOF SWITCH DEBIT CARDS
+// MAZ purchaseorder start
+                          'account_name' => $GLOBALS['account_name'],
+                          'account_number' => $GLOBALS['account_number'],
+                          'po_number' => $GLOBALS['po_number'],
+// MAZ purchaseorder end         
+						  // start indvship
+                          //'shipping_method' => $shipping['title'],
+                          //'shipping_cost' => $shipping['cost'],
+                          'shipping_method' => $shipping_title,
+                          'shipping_cost' => $shipping_cost, 
+						  //end indvship
+						                   
                           'subtotal' => 0,
                           'tax' => 0,
                           'tax_groups' => array(),
@@ -242,6 +307,7 @@
                               'lastname' => $customer_address['customers_lastname'],
                               'company' => $customer_address['entry_company'],
                               'street_address' => $customer_address['entry_street_address'],
+					'street_address2' => $customer_address['entry_street_address2'],
                               'suburb' => $customer_address['entry_suburb'],
                               'city' => $customer_address['entry_city'],
                               'postcode' => $customer_address['entry_postcode'],
@@ -256,6 +322,7 @@
                               'lastname' => $shipping_address['entry_lastname'],
                               'company' => $shipping_address['entry_company'],
                               'street_address' => $shipping_address['entry_street_address'],
+					'street_address2' => $shipping_address['entry_street_address2'],
                               'suburb' => $shipping_address['entry_suburb'],
                               'city' => $shipping_address['entry_city'],
                               'postcode' => $shipping_address['entry_postcode'],
@@ -269,6 +336,7 @@
                              'lastname' => $billing_address['entry_lastname'],
                              'company' => $billing_address['entry_company'],
                              'street_address' => $billing_address['entry_street_address'],
+				     'street_address2' => $billing_address['entry_street_address2'],
                              'suburb' => $billing_address['entry_suburb'],
                              'city' => $billing_address['entry_city'],
                              'postcode' => $billing_address['entry_postcode'],

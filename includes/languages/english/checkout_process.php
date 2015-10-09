@@ -22,7 +22,11 @@ define('EMAIL_TEXT_TOTAL', 'Total:    ');
 define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Delivery Address');
 define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address');
 define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method');
-
+// MAZ purchaseorder start
+define('EMAIL_TEXT_ACCOUNT_NAME',   'Account Name:      ');
+define('EMAIL_TEXT_ACCOUNT_NUMBER', 'Account Number:    ');
+define('EMAIL_TEXT_PO_NUMBER',      'Purchase Order No: ');
+// MAZ purchaseorder end
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('TEXT_EMAIL_VIA', 'via');
 ?>

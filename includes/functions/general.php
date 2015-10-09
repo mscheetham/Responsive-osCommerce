@@ -464,6 +464,7 @@
       $lastname = '';
     }
     $street = tep_output_string_protected($address['street_address']);
+    $street2 = tep_output_string_protected($address['street_address2']);    
     $suburb = tep_output_string_protected($address['suburb']);
     $city = tep_output_string_protected($address['city']);
     $state = tep_output_string_protected($address['state']);
@@ -524,7 +525,7 @@
       return tep_address_format($address_id['address_format_id'], $address_id, $html, $boln, $eoln);
     }
 
-    $address_query = tep_db_query("select entry_firstname as firstname, entry_lastname as lastname, entry_company as company, entry_street_address as street_address, entry_suburb as suburb, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$customers_id . "' and address_book_id = '" . (int)$address_id . "'");
+$address_query = tep_db_query("select entry_firstname as firstname, entry_lastname as lastname, entry_company as company, entry_street_address as street_address, entry_street_address2 as street_address2, entry_suburb as suburb, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$customers_id . "' and address_book_id = '" . (int)$address_id . "'");
     $address = tep_db_fetch_array($address_query);
 
     $format_id = tep_get_address_format_id($address['country_id']);
@@ -1393,4 +1394,10 @@
       return str_replace($from, $to, $string);
     }
   }
+
+//MAZ BOF SWITCH DEBIT CARDS
+// BMC CC Mod Start
+//include('includes/functions/encrypt.php');
+// BMC CC Mod End
+//MAZ EOF SWITCH
 ?>

@@ -11,7 +11,7 @@
 */
 
 define('NAVBAR_TITLE', 'Specials');
-define('HEADING_TITLE', 'Get Them While They\'re Hot!');
+define('HEADING_TITLE', 'Special Offers');
 
 define('TEXT_NO_PRODUCTS', 'There are no special offers available.');
 

@@ -51,8 +51,8 @@ define('TITLE', STORE_NAME);
 
 // header text in includes/header.php
 define('HEADER_TITLE_CREATE_ACCOUNT', 'Create an Account');
-define('HEADER_TITLE_MY_ACCOUNT', 'My Account');
-define('HEADER_TITLE_CART_CONTENTS', 'Cart Contents');
+define('HEADER_TITLE_MY_ACCOUNT', 'Account');
+define('HEADER_TITLE_CART_CONTENTS', 'Basket');
 define('HEADER_TITLE_CHECKOUT', 'Checkout');
 define('HEADER_TITLE_TOP', '<i class="fa fa-home"><span class="sr-only">Home</span></i>');
 define('HEADER_TITLE_CATALOG', 'Catalog');
@@ -110,24 +110,27 @@ define('ENTRY_LAST_NAME_ERROR', 'Your Last Name must contain a minimum of ' . EN
 define('ENTRY_LAST_NAME_TEXT', '');
 define('ENTRY_DATE_OF_BIRTH', 'Date of Birth');
 define('ENTRY_DATE_OF_BIRTH_ERROR', 'Your Date of Birth must be in this format: MM/DD/YYYY (eg 05/21/1970)');
-define('ENTRY_DATE_OF_BIRTH_TEXT', 'eg. 05/21/1970');
+define('ENTRY_DATE_OF_BIRTH_TEXT', 'eg. 21/05/1970');
 define('ENTRY_EMAIL_ADDRESS', 'E-Mail Address');
 define('ENTRY_EMAIL_ADDRESS_ERROR', 'Your E-Mail Address must contain a minimum of ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' characters.');
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Your E-Mail Address does not appear to be valid - please make any necessary corrections.');
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Your E-Mail Address already exists in our records - please log in with the e-mail address or create an account with a different address.');
 define('ENTRY_EMAIL_ADDRESS_TEXT', '');
-define('ENTRY_STREET_ADDRESS', 'Street Address');
+ define('ENTRY_STREET_ADDRESS', 'Address Line 1:');
+define('ENTRY_STREET_ADDRESS2', 'Address Line 2:');
 define('ENTRY_STREET_ADDRESS_ERROR', 'Your Street Address must contain a minimum of ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.');
 define('ENTRY_STREET_ADDRESS_TEXT', '');
-define('ENTRY_SUBURB', 'Suburb');
+define('ENTRY_STREET_ADDRESS_TEXT2', '');
+define('ENTRY_SUBURB', 'Suburb:');
+define('ENTRY_SUBURB_ERROR', '');
 define('ENTRY_SUBURB_TEXT', '');
 define('ENTRY_POST_CODE', 'Post Code');
 define('ENTRY_POST_CODE_ERROR', 'Your Post Code must contain a minimum of ' . ENTRY_POSTCODE_MIN_LENGTH . ' characters.');
 define('ENTRY_POST_CODE_TEXT', '');
-define('ENTRY_CITY', 'City');
-define('ENTRY_CITY_ERROR', 'Your City must contain a minimum of ' . ENTRY_CITY_MIN_LENGTH . ' characters.');
+define('ENTRY_CITY', 'Town/City:');
+define('ENTRY_CITY_ERROR', 'Your town/City must contain a minimum of ' . ENTRY_CITY_MIN_LENGTH . ' characters.');
 define('ENTRY_CITY_TEXT', '');
-define('ENTRY_STATE', 'State/Province');
+define('ENTRY_STATE', 'State/Province:');
 define('ENTRY_STATE_ERROR', 'Your State must contain a minimum of ' . ENTRY_STATE_MIN_LENGTH . ' characters.');
 define('ENTRY_STATE_ERROR_SELECT', 'Please select a state from the States pull down menu.');
 define('ENTRY_STATE_TEXT', '');
@@ -181,7 +184,7 @@ define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
 define('IMAGE_BUTTON_ADD_ADDRESS', 'Add Address');
 define('IMAGE_BUTTON_ADDRESS_BOOK', 'Address Book');
 define('IMAGE_BUTTON_BACK', 'Back');
-define('IMAGE_BUTTON_BUY_NOW', 'Buy Now');
+define('IMAGE_BUTTON_BUY_NOW', 'Buy&nbsp;Now');
 define('IMAGE_BUTTON_CHANGE_ADDRESS', 'Change Address');
 define('IMAGE_BUTTON_CHECKOUT', 'Checkout');
 define('IMAGE_BUTTON_CONFIRM_ORDER', 'Confirm Order');
@@ -197,7 +200,7 @@ define('IMAGE_BUTTON_QUICK_FIND', 'Quick Find');
 define('IMAGE_BUTTON_REMOVE_NOTIFICATIONS', 'Remove Notifications');
 define('IMAGE_BUTTON_REVIEWS', 'Reviews');
 define('IMAGE_BUTTON_SEARCH', 'Search');
-define('IMAGE_BUTTON_SHIPPING_OPTIONS', 'Shipping Options');
+define('IMAGE_BUTTON_SHIPPING_OPTIONS', 'Delivery Options');
 define('IMAGE_BUTTON_TELL_A_FRIEND', 'Tell a Friend');
 define('IMAGE_BUTTON_UPDATE', 'Update');
 define('IMAGE_BUTTON_UPDATE_CART', 'Update Cart');
@@ -213,11 +216,18 @@ define('ICON_CART', 'In Cart');
 define('ICON_ERROR', 'Error');
 define('ICON_SUCCESS', 'Success');
 define('ICON_WARNING', 'Warning');
-
-define('TEXT_GREETING_PERSONAL', 'Welcome back <span class="greetUser">%s!</span> Would you like to see which <a href="%s"><u>new products</u></a> are available to purchase?');
+define('TEXT_GREETING_PERSONAL_TITLE', '<h1>Architectural, Engineering, Construction, Graphic and Printing Solutions</h1>');
+define('TEXT_GREETING_PERSONAL', '<div align="left" class="frontPageGreeting"><div align="left" class="frontPageGreeting"><p>Our business specialises in providing CAD and AEC Software, Large-Format Printing, Scanning and Copying equipment to Engineering, Architecture, Construction and Print industry, as well as to Govt. Public Sector and Utilities since 1994. 
+</p><p>Our wide range of products include: HP DesignJet, Epson Stylus Pro and Canon iPF series of large-format Printers Plotters, Contex and Colortrac wide-format Scanners, AutoCAD Software, Plotter Paper Rolls and Ink Supplies. </p>
+<p>We also offer software training, large format equipment installation, repair, maintenance and technical support services.</p>
+</p></div></div>');
 define('TEXT_GREETING_PERSONAL_RELOGON', '<small>If you are not %s, please <a href="%s"><u>log yourself in</u></a> with your account information.</small>');
-define('TEXT_GREETING_GUEST', 'Welcome <span class="greetUser">Guest!</span> Would you like to <a href="%s"><u>log yourself in</u></a>? Or would you prefer to <a href="%s"><u>create an account</u></a>?');
+define('TEXT_GREETING_GUEST_TITLE', '<h1>Architectural, Engineering, Construction, Graphic and Printing Solutions</h1>');
 
+define('TEXT_GREETING_GUEST', '<div align="left" class="frontPageGreeting"><p>Our business specialises in providing CAD and AEC Software, Large-Format Printing, Scanning and Copying equipment to Engineering, Architecture, Construction and Print industry, as well as to Govt. Public Sector and Utilities since 1994. 
+</p><p>Our wide range of products include: HP DesignJet, Epson Stylus Pro and Canon iPF series of large-format Printers Plotters, Contex and Colortrac wide-format Scanners, AutoCAD Software, Plotter Paper Rolls and Ink Supplies. </p>
+<p>We also offer software training, large format equipment installation, repair, maintenance and technical support services.</p>
+</p></div>');
 define('TEXT_SORT_PRODUCTS', 'Sort products ');
 define('TEXT_DESCENDINGLY', 'descendingly');
 define('TEXT_ASCENDINGLY', 'ascendingly');
@@ -239,7 +249,7 @@ define('ERROR_TEP_MAIL', '<font face="Verdana, Arial" size="2" color="#ff0000"><
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'The expiry date entered for the credit card is invalid. Please check the date and try again.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'The credit card number entered is invalid. Please check the number and try again.');
-define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'The first four digits of the number entered are: %s. If that number is correct, we do not accept that type of credit card. If it is wrong, please try again.');
+define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'We could not verify your credit card, please check the details have been entered correctly.  If you are sure your details are correct choose \'Call me to take my Credit/Debit Card details\' and we will be happy to take your details over the phone');
 
 // category views
 define('TEXT_VIEW', 'View: ');
@@ -254,22 +264,31 @@ define('FORM_REQUIRED_INFORMATION', '<span class="fa fa-asterisk inputRequiremen
 define('FORM_REQUIRED_INPUT', '<span><span class="fa fa-asterisk form-control-feedback inputRequirement"></span></span>');
 
 // reviews
-define('REVIEWS_TEXT_RATED', 'Rated %s by <cite title="%s" itemprop="author">%s</cite>');
-define('REVIEWS_TEXT_AVERAGE', 'Average rating based on <span itemprop="ratingCount">%s</span> review(s) %s');
+define('REVIEWS_TEXT_RATED', 'Rated %s by <cite title="%s" itemprop="reviewer">%s</cite>');
+define('REVIEWS_TEXT_AVERAGE', 'Average rating based on <span itemprop="count">%s</span> review(s) %s');
 define('REVIEWS_TEXT_TITLE', 'What our customers say...');
 
 // grid/list
 define('TEXT_SORT_BY', 'Sort By ');
 // moved from index
-define('TABLE_HEADING_IMAGE', '');
-define('TABLE_HEADING_MODEL', 'Model');
-define('TABLE_HEADING_PRODUCTS', 'Product Name');
-define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
-define('TABLE_HEADING_QUANTITY', 'Quantity');
-define('TABLE_HEADING_PRICE', 'Price');
-define('TABLE_HEADING_WEIGHT', 'Weight');
-define('TABLE_HEADING_BUY_NOW', 'Buy Now');
-define('TABLE_HEADING_LATEST_ADDED', 'Latest Products');
+
+//MAZ START OF FAMMILY PRODUCTS
+// Define the default text for the family products list display.
+  define('TABLE_HEADING_IMAGE', '');
+  define('TABLE_HEADING_MODEL', 'Model');
+  define('TABLE_HEADING_PRODUCTS', 'Product Name');
+  define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
+  define('TABLE_HEADING_QUANTITY', 'Quantity');
+  define('TABLE_HEADING_PRICE', 'Price');
+  define('TABLE_HEADING_WEIGHT', 'Weight');
+  define('TABLE_HEADING_BUY_NOW', 'Buy Now');
+  //MAZ END OF FAMILY PRODUCTS
+//MAZ BOF SWITCH
+// BMC CC Mod Start
+//	define('TEXT_CCVAL_ERROR_NOT_ACCEPTED', 'The card you have entered is a <b>%s</b><br />At this time we do not accept <b>%s</b> as payment.');
+//	define('TEXT_CCVAL_ERROR_BLACKLIST', 'We cannot accept your card as it is blacklisted, if you feel you have recieved this message in error please contact your card issuer.');
+//	define('TEXT_CCVAL_ERROR_SHORT', 'You have not entered the correct amount of digits. Please ensure you have entered all of the long number displayed on the front of your card');
+
 
 // product notifications
 define('PRODUCT_SUBSCRIBED', '%s has been added to your Notification List');

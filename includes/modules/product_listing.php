@@ -127,7 +127,13 @@
     } else {
       $prod_list_contents .= '    <a href="' . tep_href_link(FILENAME_PRODUCT_INFO, ($cPath ? 'cPath=' . $cPath . '&' : '') . 'products_id=' . $listing['products_id']) . '">' . $listing['products_name'] . '</a>';
     }
-    $prod_list_contents .= '      </h2>';
+	/*if ($col==0){
+		$lc_text = tep_create_sort_heading($HTTP_GET_VARS['sort'], $col, 'Default');
+		$prod_list_contents .= $lc_text . '    :    ';
+	}*/
+    if ( ($column_list[$col] != 'PRODUCT_LIST_BUY_NOW') && ($column_list[$col] != 'PRODUCT_LIST_IMAGE') ) {
+      $lc_text = tep_create_sort_heading($HTTP_GET_VARS['sort'], $col+1, $lc_text);
+    
 
     $prod_list_contents .= '      <p class="group inner list-group-item-text">' . strip_tags($listing['products_description'], '<br>') . '&hellip;</p><div class="clearfix"></div>';
 

@@ -145,6 +145,26 @@
       return $string;
     }
   }
+  //MAZ ADDED FOR FAMILY PRODUCTS START
+
+////
+// Returns an array with family names for the Family Products v. 4.0 module.
+// TABLES: families
+
+  function tep_get_family_names($family_names_array = '') {
+    if (!is_array($family_names_array)) $family_names_array = array();
+
+    $family_names_query = tep_db_query("select family_id, family_name from " . TABLE_FAMILIES . " order by family_id ASC");
+    while ($family_names = tep_db_fetch_array($orientation_query)) {
+      $family_names_array[] = array('id' => $family_names['family_id'], 'text' => $family_names['family_name']);
+    }
+
+    return $family_names_array;
+  }
+//MAZ ADDED FOR FAMILY PRODUCTS END
+  
+
+
 
   function tep_db_affected_rows($link = 'db_link') {
     global $$link;

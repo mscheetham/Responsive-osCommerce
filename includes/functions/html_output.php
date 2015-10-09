@@ -351,7 +351,7 @@
 
 ////
 // Output a jQuery UI Button
-  function tep_draw_button($title = null, $icon = null, $link = null, $priority = null, $params = null, $style = null) {
+  function tep_draw_button($title = null, $icon = null, $link = null, $priority = null, $params = null, $style = null, $id = null, $class=null) {
     static $button_counter = 1;
 
     $types = array('submit', 'button', 'reset');
@@ -413,9 +413,10 @@
   }
 
   // review stars
-  function tep_draw_stars($rating = 0) {
+  function tep_draw_stars($rating = 0, $meta = false) {
     $stars = str_repeat('<span class="fa fa-star"></span>', (int)$rating);
     $stars .= str_repeat('<span class="fa fa-star-o"></span>', 5-(int)$rating);
+    if ($meta !== false) $stars .= '<meta itemprop="rating" content="' . (int)$rating . '" />';
 
     return $stars;
   }

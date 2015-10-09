@@ -20,7 +20,7 @@ define('TEXT_SELECTED_BILLING_DESTINATION', 'Please choose from your address boo
 define('TITLE_BILLING_ADDRESS', 'Billing Address:');
 
 define('TABLE_HEADING_PAYMENT_METHOD', 'Payment Method');
-define('TEXT_SELECT_PAYMENT_METHOD', 'Please select the preferred payment method to use on this order.');
+define('TEXT_SELECT_PAYMENT_METHOD', 'Please select the preferred payment method to use on this order. <br><span style="color:red">Note:</span>Only Select One payment method below, for security reasons any information entered into a unselected method wil be discarded once you click continue.');
 define('TITLE_PLEASE_SELECT', 'Please Select');
 define('TEXT_ENTER_PAYMENT_INFORMATION', 'This is currently the only payment method available to use on this order.');
 

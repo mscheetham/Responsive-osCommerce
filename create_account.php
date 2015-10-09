@@ -32,6 +32,7 @@
     $email_address = tep_db_prepare_input($HTTP_POST_VARS['email_address']);
     if (ACCOUNT_COMPANY == 'true') $company = tep_db_prepare_input($HTTP_POST_VARS['company']);
     $street_address = tep_db_prepare_input($HTTP_POST_VARS['street_address']);
+    $street_address2 = tep_db_prepare_input($HTTP_POST_VARS['street_address2']);
     if (ACCOUNT_SUBURB == 'true') $suburb = tep_db_prepare_input($HTTP_POST_VARS['suburb']);
     $postcode = tep_db_prepare_input($HTTP_POST_VARS['postcode']);
     $city = tep_db_prepare_input($HTTP_POST_VARS['city']);
@@ -187,6 +188,7 @@
                               'entry_firstname' => $firstname,
                               'entry_lastname' => $lastname,
                               'entry_street_address' => $street_address,
+ 					'entry_street_address2' => $street_address2,
                               'entry_postcode' => $postcode,
                               'entry_city' => $city,
                               'entry_country_id' => $country);
@@ -257,9 +259,7 @@
   require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
 
-<div class="page-header">
   <h1><?php echo HEADING_TITLE; ?></h1>
-</div>
 
 <?php
   if ($messageStack->size('create_account') > 0) {

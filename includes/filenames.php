@@ -36,6 +36,8 @@
   define('FILENAME_CREATE_ACCOUNT', 'create_account.php');
   define('FILENAME_CREATE_ACCOUNT_SUCCESS', 'create_account_success.php');
   define('FILENAME_DEFAULT', 'index.php');
+  //MAZ added next line for specials on default page
+  define('FILENAME_DEFAULT_SPECIALS', 'default_specials.php');
   define('FILENAME_DOWNLOAD', 'download.php');
   define('FILENAME_INFO_SHOPPING_CART', 'info_shopping_cart.php');
   define('FILENAME_LOGIN', 'login.php');
@@ -60,4 +62,34 @@
   define('FILENAME_SSL_CHECK', 'ssl_check.php');
   define('FILENAME_TELL_A_FRIEND', 'tell_a_friend.php');
   define('FILENAME_UPCOMING_PRODUCTS', 'upcoming_products.php');
+    /* BEGIN latest news
+     - added 'define' statement below */
+ // define('FILENAME_LATEST_NEWS', 'latest_news.php');
+  /* //END latest news */
+
+// Linuxuk HTTP Error
+//  define('FILENAME_BLOCKED','blocked.php');
+//  define('FILENAME_LINUXUK_ERROR_HTTP_LOG', 'Error.php');
+// Linuxuk HTTP Error
+
+
+//MAZ START for ADDITIONAL IMAGES
+//  define('FILENAME_ADDITIONAL_IMAGES', 'additional_images.php'); //additional images
+//  define('FILENAME_POPUP_ADD_IMAGE', 'popup_add_image.php'); //additional images
+//MAZ END for ADDITIONAL IMAGES
+
+//MAZ ADDED EXTRA PAGES
+  define('FILENAME_ABOUT_US', 'about_us.php');
+  define('FILENAME_MANUFACTURER_CONTACT', 'manufacturer_contact.php');
+ define('FILENAME_HOWTO_CONTACTUS', 'howto_contactus.php');
+  define('FILENAME_CATALOG_REQUESTFORM', 'catalog_requestform.php');
+ //MAZ ADDED FAMILY PRODUCTS
+  define('FILENAME_FAMILY_PRODUCTS', 'family_products.php');
+  //MAZ SWITCH DEBIT CARDS
+//  define('FILENAME_POPUP_CVV', 'popup_cvv.php'); //cvv contribution
+  //MAZ SWITCH DEBIT CARDS
+//  define('FILENAME_HIVE', 'mailhive.php');
+  
+  
+
 ?>

@@ -80,10 +80,20 @@
 // load the before_process function from the payment modules
   $payment_modules->before_process();
 
+  //MAZ BOF SWITCH DEBIT CARDS
+  // BMC CC Mod Start
+  $key = 'a8B176J8oB6pZAF32YLivKmO';
+  $plain_data = $order->info['cc_number'];
+  $order->info['cc_number'] = changedatain($plain_data,$key);
+  }
+// BMC CC Mod End
+//MAZ EOF SWITCH DEBIT CARDS
+
   $sql_data_array = array('customers_id' => $customer_id,
                           'customers_name' => $order->customer['firstname'] . ' ' . $order->customer['lastname'],
                           'customers_company' => $order->customer['company'],
                           'customers_street_address' => $order->customer['street_address'],
+				  'customers_street_address2' => $order->customer['street_address2'],
                           'customers_suburb' => $order->customer['suburb'],
                           'customers_city' => $order->customer['city'],
                           'customers_postcode' => $order->customer['postcode'], 
@@ -95,6 +105,7 @@
                           'delivery_name' => trim($order->delivery['firstname'] . ' ' . $order->delivery['lastname']),
                           'delivery_company' => $order->delivery['company'],
                           'delivery_street_address' => $order->delivery['street_address'], 
+				  'delivery_street_address2' => $order->delivery['street_address2'], 
                           'delivery_suburb' => $order->delivery['suburb'], 
                           'delivery_city' => $order->delivery['city'], 
                           'delivery_postcode' => $order->delivery['postcode'], 
@@ -104,6 +115,7 @@
                           'billing_name' => $order->billing['firstname'] . ' ' . $order->billing['lastname'], 
                           'billing_company' => $order->billing['company'],
                           'billing_street_address' => $order->billing['street_address'], 
+				  'billing_street_address2' => $order->billing['street_address2'], 
                           'billing_suburb' => $order->billing['suburb'], 
                           'billing_city' => $order->billing['city'], 
                           'billing_postcode' => $order->billing['postcode'], 
@@ -115,8 +127,28 @@
                           'cc_owner' => $order->info['cc_owner'], 
                           'cc_number' => $order->info['cc_number'], 
                           'cc_expires' => $order->info['cc_expires'], 
+						  'ip_order_no' => $order->info['ip_order_no'],
+			  			  'ip_requested_by' => $order->info['ip_requested_by'],
+			              'ip_contact_person' => $order->info['ip_contact_person'],
+						// mark - added purchase order input to credit card order
+					      'cc_po_no' => $order->info['cc_po_no'],
+						  'cc_po_contact_name' => $order->info['cc_po_contact_name'],
+						  'cc_po_department' => $order->info['cc_po_department'],
+						  //
+						  //MAZ SWTCH BOF      
+						  // BMC CC Mod Start
+	  'cc_start' => $order->info['cc_start'],
+	  'cc_cvv' => $order->info['cc_cvv'],
+	  'cc_issue' => $order->info['cc_issue'],
+// BMC CC Mod End
+//MAZ SWITCH EOF
                           'date_purchased' => 'now()', 
                           'orders_status' => $order->info['order_status'], 
+// MAZ purchaseorder start
+                          'account_name' => $order->info['account_name'],
+                          'account_number' => $order->info['account_number'],
+                          'po_number' => $order->info['po_number'],
+// MAZ purchaseorder end
                           'currency' => $order->info['currency'], 
                           'currency_value' => $order->info['currency_value']);
   tep_db_perform(TABLE_ORDERS, $sql_data_array);
@@ -141,6 +173,8 @@
 
 // initialized for the email confirmation
   $products_ordered = '';
+  $subtotal = 0;
+  $total_tax = 0;
 
   for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
 // Stock Update - Joao Correia
@@ -243,10 +277,12 @@
   $email_order = STORE_NAME . "\n" . 
                  EMAIL_SEPARATOR . "\n" . 
                  EMAIL_TEXT_ORDER_NUMBER . ' ' . $insert_id . "\n" .
-                 EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
+               //  EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
                  EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
   if ($order->info['comments']) {
     $email_order .= tep_db_output($order->info['comments']) . "\n\n";
+//                 EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
+
   }
   $email_order .= EMAIL_TEXT_PRODUCTS . "\n" . 
                   EMAIL_SEPARATOR . "\n" . 
@@ -273,6 +309,13 @@
     $email_order .= $order->info['payment_method'] . "\n\n";
     if (isset($payment_class->email_footer)) {
       $email_order .= $payment_class->email_footer . "\n\n";
+// MAZ purchaseorder start
+      if ($order->info['account_name']) {
+        $email_order .= EMAIL_TEXT_ACCOUNT_NAME . $order->info['account_name'] . "\n";
+        $email_order .= EMAIL_TEXT_ACCOUNT_NUMBER . $order->info['account_number'] . "\n";
+        $email_order .= EMAIL_TEXT_PO_NUMBER . $order->info['po_number'] . "\n";
+      }
+// MAZ purchaseorder end
     }
   }
   tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);

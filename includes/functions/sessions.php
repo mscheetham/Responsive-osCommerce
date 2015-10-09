@@ -16,6 +16,10 @@
   }
 
   if (STORE_SESSIONS == 'mysql') {
+    if (!$SESS_LIFE = get_cfg_var('session.gc_maxlifetime')) {
+      $SESS_LIFE = 1440;
+    }
+
     function _sess_open($save_path, $session_name) {
       return true;
     }

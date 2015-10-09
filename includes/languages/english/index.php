@@ -12,8 +12,12 @@
 
 define('TEXT_MAIN', '');
 define('TABLE_HEADING_NEW_PRODUCTS', 'New Products For %s');
-define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Upcoming Products');
+define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Forthcoming Products');
 define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected');
+
+// MAZ added next line for Specials on index page
+define('TABLE_HEADING_DEFAULT_SPECIALS', 'Specials For %s');
+
 define('HEADING_TITLE', 'Welcome to ' . STORE_NAME);
 
 define('TEXT_NO_PRODUCTS', 'There are no products available in this category.');

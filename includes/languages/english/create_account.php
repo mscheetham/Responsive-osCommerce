@@ -20,8 +20,28 @@ define('EMAIL_SUBJECT', 'Welcome to ' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Dear Mr. %s,' . "\n\n");
 define('EMAIL_GREET_MS', 'Dear Ms. %s,' . "\n\n");
 define('EMAIL_GREET_NONE', 'Dear %s' . "\n\n");
-define('EMAIL_WELCOME', 'We welcome you to <strong>' . STORE_NAME . '</strong>.' . "\n\n");
-define('EMAIL_TEXT', 'You can now take part in the <strong>various services</strong> we have to offer you. Some of these services include:' . "\n\n" . '<li><strong>Permanent Cart</strong> - Any products added to your online cart remain there until you remove them, or check them out.' . "\n" . '<li><strong>Address Book</strong> - We can now deliver your products to another address other than yours! This is perfect to send birthday gifts direct to the birthday-person themselves.' . "\n" . '<li><strong>Order History</strong> - View your history of purchases that you have made with us.' . "\n" . '<li><strong>Products Reviews</strong> - Share your opinions on products with our other customers.' . "\n\n");
-define('EMAIL_CONTACT', 'For help with any of our online services, please email the store-owner: ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n\n");
-define('EMAIL_WARNING', '<strong>Note:</strong> This email address was given to us by one of our customers. If you did not signup to be a member, please send an email to ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n");
-?>
+define('EMAIL_WELCOME', 'Thank you for registering.');
+define('EMAIL_TEXT', ' You can now take part in the various online services we can offer you. Some of these services include: <br />
+<b><u>Online Ordering</u></b>&nbsp;-&nbsp; Large-Format CAD & BIM Software and wide-format printers, plotters, scanners, Paper Media and Ink supplies.<br />
+<b><u>Payment Options</u></b>&nbsp;-&nbsp; 30-day credit account for public/govt. sector, utilities, corporates and large well-established businesses. We also accept Credit & Debit Cards. Please note Credit Card payments incur a 2% surcharge.<br />
+<b><u>Trade Promotions</u></b>&nbsp;-&nbsp; Access into various promotions and special offers.<br />
+<b><u>Large-Format Supplies</u></b>&nbsp;-&nbsp; We now sell branded and third party supplies for Designjet Printers, CAD Plotters and Laminators.<br />
+<b><u>Free Delivery</u></b>&nbsp;-&nbsp; All online orders of over £200.00 (exc. VAT.) will be delivered free of charge (UK mainland only).<br /><br />
+For help with any of our online services, please send an email to sales@cadandgraphic.co.uk
+
+With Regards..... Fraser Dixon
+Manager
+
+TCS CAD & Graphic Solutions Limited
+Unit F Yorkway
+Mandale Ind. Estate
+Thornaby
+Stockton-on-Tees
+TS17 6BX
+(United Kingdom)
+
+Tel: 01642 677582
+Fax: 01642 618079<br /><br /> ');
+
+define('EMAIL_CONTACT','');
+define('EMAIL_WARNING', '<b>Note:</b> This email address was given to us by one of our customers. If you did not signup to be a member, please send an email to ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n");
