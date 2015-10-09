@@ -82,6 +82,7 @@
 
   //MAZ BOF SWITCH DEBIT CARDS
   // BMC CC Mod Start
+if ( strtolower(CC_ENC) == 'true' ) {
   $key = 'a8B176J8oB6pZAF32YLivKmO';
   $plain_data = $order->info['cc_number'];
   $order->info['cc_number'] = changedatain($plain_data,$key);
